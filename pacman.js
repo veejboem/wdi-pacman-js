@@ -1,7 +1,7 @@
 // Setup initial game stats
 var score = 0;
 var lives = 2;
-var powerPellet = 4;
+var p = 4;
 
 
 // Define your ghosts here
@@ -56,7 +56,7 @@ function clearScreen() {
 
 function displayStats() {
   console.log('Score: ' + score + '     Lives: ' + lives);
-  console.log('\n\nPower-Pellets: ' + powerPellet);
+  console.log('\n\nPower-Pellets: ' + p);
 }
 
 function displayMenu() {
@@ -66,6 +66,7 @@ function displayMenu() {
   console.log('(2) Eat Blinky');
   console.log('(3) Eat Pinky');
   console.log('(4) Eat Clyde');
+  console.log('(p) Eat Power-Pellet')
   console.log('(q) Quit');
 }
 
@@ -100,8 +101,17 @@ function lifeCheck() {
 }
 
 //Power-Pellet ability
-
-
+function eatPowerPellet() {
+  if (p !=0) {
+    score += 50;
+    p --;
+    ghosts.forEach(function(ghost) {
+      ghosts.edible === true;
+      })
+    } else {
+      console.log('\nThere are no more Power-Pellets');
+    }
+}
 
 // Process Player's Input
 function processInput(key) {
@@ -124,6 +134,9 @@ function processInput(key) {
       break;
     case '4':
       eatGhost(clyde);
+      break;
+    case 'p':
+      eatPowerPellet(p);
       break;
     default:
       console.log('\nInvalid Command!');
