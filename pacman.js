@@ -62,10 +62,30 @@ function displayStats() {
 function displayMenu() {
   console.log('\n\nSelect Option:\n');  // each \n creates a new line
   console.log('(d) Eat Dot');
-  console.log('(1) Eat Inky');
-  console.log('(2) Eat Blinky');
-  console.log('(3) Eat Pinky');
-  console.log('(4) Eat Clyde');
+  if (inky.edible === true) {
+    console.log('(1) Eat Inky (Edible)');
+  }
+  else {
+    console.log('(1) Eat Inky (Inedible)');
+  }
+  if (blinky.edible === true) {
+    console.log('(2) Eat Blinky (Edible)');
+  }
+  else {
+    console.log('(2) Eat Blinky (Inedible)');
+  }
+  if (pinky.edible === true) {
+    console.log('(3) Eat Pinky (Edible)');
+  }
+  else {
+    console.log('(3) Eat Pinky (Inedible)');
+  }
+  if (clyde.edible === true) {
+    console.log('(4) Eat Clyde (Edible)');
+  }
+  else {
+    console.log('(4) Eat Clyde (Inedible)');
+  }
   if (p > 0) {
     console.log('(p) Eat Power-Pellet')
   }
@@ -88,11 +108,14 @@ function eatDot() {
 
 //Eating an Inedible Ghost
 function eatGhost(ghost) {
-  if (!ghosts.edible && lives > 0) {
-    console.log("\nPacman just lost a life. Don't eat the ghosts!");
+  if (!ghost.edible && lives > 0) {
+    console.log('\nPacman just lost a life.');
     lives --;
     lifeCheck();
   } else {
+    console.log('\nPacman just ate ' + ghost.name + 'whose character trait is ' + ghost.character);
+    ghost.edible = false;
+    score += 200;
     lifeCheck();
   }
 }
@@ -111,7 +134,7 @@ function eatPowerPellet() {
     score += 50;
     p --;
     ghosts.forEach(function(ghost) {
-      ghosts.edible === true;
+      ghost.edible = true;
       })
     } else {
       console.log('\nThere are no more Power-Pellets');
