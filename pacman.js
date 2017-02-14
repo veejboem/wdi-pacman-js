@@ -1,6 +1,7 @@
 // Setup initial game stats
 var score = 0;
 var lives = 2;
+var powerPellet = 4;
 
 
 // Define your ghosts here
@@ -55,6 +56,7 @@ function clearScreen() {
 
 function displayStats() {
   console.log('Score: ' + score + '     Lives: ' + lives);
+  console.log('\n\nPower-Pellets: ' + powerPellet);
 }
 
 function displayMenu() {
@@ -71,7 +73,6 @@ function displayPrompt() {
   // process.stdout.write is similar to console.log except it doesn't add a new line after the text
   process.stdout.write('\nWaka Waka :v '); // :v is the Pac-Man emoji.
 }
-
 
 // Menu Options
 function eatDot() {
@@ -90,7 +91,6 @@ function eatGhost(ghost) {
   }
 }
 
-
 // Check total lives
 function lifeCheck() {
   if (lives === 0) {
@@ -98,6 +98,10 @@ function lifeCheck() {
   process.exit();
   }
 }
+
+//Power-Pellet ability
+
+
 
 // Process Player's Input
 function processInput(key) {
