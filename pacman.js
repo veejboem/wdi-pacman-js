@@ -66,7 +66,12 @@ function displayMenu() {
   console.log('(2) Eat Blinky');
   console.log('(3) Eat Pinky');
   console.log('(4) Eat Clyde');
-  console.log('(p) Eat Power-Pellet')
+  if (p > 0) {
+    console.log('(p) Eat Power-Pellet')
+  }
+  else {
+    console.log('\nThere are no more Power-Pellets!');
+  };
   console.log('(q) Quit');
 }
 
@@ -112,6 +117,8 @@ function eatPowerPellet() {
       console.log('\nThere are no more Power-Pellets');
     }
 }
+
+
 
 // Process Player's Input
 function processInput(key) {
