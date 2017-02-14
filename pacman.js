@@ -11,7 +11,7 @@ var inky = {
   colour: 'Red',
   character: 'Shadow',
   edible: false
-};
+}
 
 var blinky = {
   menu_option: '2',
@@ -19,7 +19,7 @@ var blinky = {
   colour: 'Cyan',
   character: 'Speedy',
   edible: false
-};
+}
 
 var pinky = {
   menu_option: '3',
@@ -27,7 +27,7 @@ var pinky = {
   colour: 'Pink',
   character: 'Bashful',
   edible: false
-};
+}
 
 var clyde = {
   menu_option: '4',
@@ -35,11 +35,9 @@ var clyde = {
   colour: 'Orange',
   character: 'Pokey',
   edible: false
-};
+}
 
-
-// replace this comment with your four ghosts setup as objects
-
+var ghosts = [ inky, blinky, pinky, clyde];
 
 // Draw the screen functionality
 function drawScreen() {
@@ -62,6 +60,10 @@ function displayStats() {
 function displayMenu() {
   console.log('\n\nSelect Option:\n');  // each \n creates a new line
   console.log('(d) Eat Dot');
+  console.log('(1) Eat Inky');
+  console.log('(2) Eat Blinky');
+  console.log('(3) Eat Pinky');
+  console.log('(4) Eat Clyde');
   console.log('(q) Quit');
 }
 
@@ -77,6 +79,25 @@ function eatDot() {
   score += 10;
 }
 
+//Eating an Inedible Ghost
+function eatGhost(ghost) {
+  if (!ghosts.edible && lives > 0) {
+    console.log("\nPacman just lost a life. Don't eat the ghosts!");
+    lives --;
+    lifeCheck();
+  } else {
+    lifeCheck();
+  }
+}
+
+
+// Check total lives
+function lifeCheck() {
+  if (lives === 0) {
+  console.log('\nYou have run out of lives!');
+  process.exit();
+  }
+}
 
 // Process Player's Input
 function processInput(key) {
@@ -87,6 +108,18 @@ function processInput(key) {
       break;
     case 'd':
       eatDot();
+      break;
+    case '1':
+      eatGhost(inky);
+      break;
+    case '2':
+      eatGhost(blinky);
+      break;
+    case '3':
+      eatGhost(pinky);
+      break;
+    case '4':
+      eatGhost(clyde);
       break;
     default:
       console.log('\nInvalid Command!');
